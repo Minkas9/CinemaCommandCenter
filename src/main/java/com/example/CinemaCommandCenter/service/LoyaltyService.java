@@ -30,5 +30,9 @@ public class LoyaltyService {
             log.info("Loyalty: {} now has {} loyalty point(s)",
                     viewerName, loyaltyPoints.get(viewerName));
         }
+
+    public Integer getPoints(String viewerName) {
+            return loyaltyPoints.get(viewerName);
     }
+}
 
