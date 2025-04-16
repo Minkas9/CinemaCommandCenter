@@ -18,21 +18,19 @@ public class LoyaltyService {
 
         @EventListener
         public void handleTicketBooked(TicketBookedEvent event) {
-            String viewerName = event.getViewerName();
-            int newPoints = event.getSeatCount();
+                String viewerName = event.getViewerName();
+                int newPoints = event.getSeatCount();
 
-            loyaltyPoints.put(
-                    viewerName,
-                    //Give me the current value if it exists, or default to 0 if it doesn't.
-                    loyaltyPoints.getOrDefault(viewerName, 0) + newPoints
-            );
+                loyaltyPoints.put(
+                                viewerName,
+                                // Give me the current value if it exists, or default to 0 if it doesn't.
+                                loyaltyPoints.getOrDefault(viewerName, 0) + newPoints);
 
-            log.info("Loyalty: {} now has {} loyalty point(s)",
-                    viewerName, loyaltyPoints.get(viewerName));
+                log.info("Loyalty: {} now has {} loyalty point(s)",
+                                viewerName, loyaltyPoints.get(viewerName));
         }
 
-    public Integer getPoints(String viewerName) {
-            return loyaltyPoints.get(viewerName);
-    }
+        public Integer getPoints(String viewerName) {
+                return loyaltyPoints.getOrDefault(viewerName, 0);
+        }
 }
-

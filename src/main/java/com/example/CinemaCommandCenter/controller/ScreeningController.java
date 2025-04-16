@@ -2,6 +2,7 @@ package com.example.CinemaCommandCenter.controller;
 
 import com.example.CinemaCommandCenter.model.Screening;
 import com.example.CinemaCommandCenter.service.ScreeningService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,13 +16,13 @@ public class ScreeningController {
 
     @PostMapping("/{cinemaId}")
     public ResponseEntity<Screening> addScreening(
-            @RequestBody Screening screening,
+            @RequestBody @Valid Screening screening,
             @PathVariable Long cinemaId) {
         return ResponseEntity.ok(screeningService.addScreening(screening, cinemaId));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Screening> getScreeningById (@PathVariable Long id) {
+    public ResponseEntity<Screening> getScreeningById(@PathVariable Long id) {
         return ResponseEntity.ok(screeningService.getScreeningById(id));
     }
 }
